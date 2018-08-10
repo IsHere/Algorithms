@@ -3,10 +3,10 @@ package algorithms.utils;
 
 
 public class BinaryTreeNode {
-	int val;
+	Integer val;
 	BinaryTreeNode left;
 	BinaryTreeNode right;
-	BinaryTreeNode(int x){
+	BinaryTreeNode(Integer x){
 		this.val = x;
 	}
 

@@ -3,9 +3,9 @@ package algorithms.utils;
 
 
 public class ListNode {
-	public int val;
+	public Integer val;
 	public ListNode next;
-	public ListNode(int val) {
+	public ListNode(Integer val) {
 		this.val = val;
 	}
 	public ListNode() {}

@@ -1,23 +1,22 @@
 package algorithms.sort;
 
 import static algorithms.utils.ArrayUtil.generateRandomArray;
-import static algorithms.utils.ArrayUtil.printArray;
+import static algorithms.utils.ArrayUtil.*;
 
+import algorithms.interfaces.GeneralSort;
 import algorithms.utils.ListNode;
 
-public class InsertSort {
+public class InsertSort implements GeneralSort {
 	
 	public static void main(String[] args) {
 		
-		int[] a = generateRandomArray();
-		printArray(a);
-		insertSort(a);
-		printArray(a);
 	}
-	public static void insertSort(int[] a ) {
+	@Override
+	public  void sort(Integer[] a ) {
 		for(int i=1;i<a.length;i++) {
 			int temp = a[i];
 			int j;
+			//从i向前遍历，如果有比当前值大的，则大的值前移，最后记得将当前值插入
 			for(j=i;j>0 && temp<a[j-1];j--) {
 				a[j] = a[j-1];
 			}
