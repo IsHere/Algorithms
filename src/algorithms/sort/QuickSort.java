@@ -3,6 +3,7 @@ package algorithms.sort;
 import algorithms.utils.ListNode;
 
 import static algorithms.utils.ArrayUtil.*;
+import static algorithms.utils.ListNodeUtil.*;
 public class QuickSort {
 	
 	
@@ -11,6 +12,10 @@ public class QuickSort {
         printArray(a);
         quickSort(a);
         printArray(a);
+        ListNode test = generateRandomListNode(10);
+        System.out.println("linkedList sort");
+        printListNode(test);
+        printListNode(sortList(test));
     }
 	//数组的实现
 	public static void quickSort(int[] a) {
@@ -52,7 +57,7 @@ public class QuickSort {
 		return j;
 	}
     //链表的实现
-    public ListNode sortList(ListNode head) {
+    public static ListNode sortList(ListNode head) {
         if(head==null || head.next==null) return head;
         ListNode dummyPre = new ListNode(0);
         dummyPre.next = head;
@@ -61,7 +66,7 @@ public class QuickSort {
 
     }
 
-    private void quickSort(ListNode pre,ListNode head,ListNode end){
+    private static void quickSort(ListNode pre,ListNode head,ListNode end){
         if(head!=end&&head.next!=end){
             //head不再指向头结点，所以需要用pre
             ListNode partition = partition(pre,head,end);
@@ -69,7 +74,7 @@ public class QuickSort {
             quickSort(partition,partition.next,end);
         }
     }
-    private ListNode partition(ListNode pre,ListNode low,ListNode high){
+    private static ListNode partition(ListNode pre,ListNode low,ListNode high){
         ListNode dummyLow = new ListNode(0);
         ListNode dummyHigh = new ListNode(0);
         ListNode less = dummyLow;
