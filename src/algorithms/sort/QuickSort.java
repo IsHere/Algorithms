@@ -3,36 +3,41 @@ package algorithms.sort;
 import algorithms.utils.ListNode;
 
 import static algorithms.utils.ArrayUtil.*;
-import static algorithms.utils.ListNodeUtil.*;
-public class QuickSort {
-	
+
+import java.lang.reflect.Proxy;
+
+import algorithms.interfaces.GeneralSort;
+import algorithms.proxy.DynamicProxyTimeCaculateHandler;
+public class QuickSort implements GeneralSort{
 	
 	public static void main(String[] args) {
-        int[] a = generateRandomArray();
-        printArray(a);
-        quickSort(a);
-        printArray(a);
-        ListNode test = generateRandomListNode(10);
-        System.out.println("linkedList sort");
-        printListNode(test);
-        printListNode(sortList(test));
-    }
-	//数组的实现
-	public static void quickSort(int[] a) {
+		GeneralSort quickSort = new QuickSort();
+		GeneralSort quickSortProxy = 
+				(GeneralSort)Proxy.newProxyInstance(GeneralSort.class.getClassLoader(), 
+				new Class[] {GeneralSort.class},
+				new DynamicProxyTimeCaculateHandler(quickSort));
+		Integer[] a = generateRandomArray(100);
+		printrArray(a);
+		quickSortProxy.sort(a);
+		printrArray(a);
+	}
+	
+	//数组实现
+	public  void sort(Integer[] a) {
         quickSort(a, 0, a.length - 1);
     }
-	private static void quickSort(int[] a,int low,int high) {
+	private  void quickSort(Integer[] a,Integer low,Integer high) {
 		if (high<=low) {
 			return;
 		}
-		int partition = partition(a, low, high);
+		Integer partition = partition(a, low, high);
 		quickSort(a, low, partition-1);
 		quickSort(a, partition+1, high);
 	}
 
-	private static int partition(int[] a,int low,int high) {
-		int i=low+1,j=high;
-		int value  = a[low];
+	private  Integer partition(Integer[] a,Integer low,Integer high) {
+		Integer i=low+1,j=high;
+		Integer value  = a[low];
 		while(true) {
 			while(a[i]<value) {
 				if (i==high) {
@@ -46,18 +51,18 @@ public class QuickSort {
 			if (i>=j) {
 				break;
 			}
-			int temp = a[i];
+			Integer temp = a[i];
 			a[i] = a[j];
 			a[j] =temp;
 		}
-		int temp = a[low];
+		Integer temp = a[low];
 		a[low] = a[j];
 		a[j] = temp;
 		
 		return j;
 	}
-    //链表的实现
-    public static ListNode sortList(ListNode head) {
+    //List实现
+    public ListNode sortList(ListNode head) {
         if(head==null || head.next==null) return head;
         ListNode dummyPre = new ListNode(0);
         dummyPre.next = head;
@@ -66,21 +71,21 @@ public class QuickSort {
 
     }
 
-    private static void quickSort(ListNode pre,ListNode head,ListNode end){
+    private void quickSort(ListNode pre,ListNode head,ListNode end){
         if(head!=end&&head.next!=end){
-            //head不再指向头结点，所以需要用pre
+            //head涓嶅啀鎸囧悜澶寸粨鐐癸紝鎵�浠ラ渶瑕佺敤pre
             ListNode partition = partition(pre,head,end);
             quickSort(pre,pre.next,partition);
             quickSort(partition,partition.next,end);
         }
     }
-    private static ListNode partition(ListNode pre,ListNode low,ListNode high){
+    private ListNode partition(ListNode pre,ListNode low,ListNode high){
         ListNode dummyLow = new ListNode(0);
         ListNode dummyHigh = new ListNode(0);
         ListNode less = dummyLow;
         ListNode larger = dummyHigh;
 
-        int value = low.val;
+        Integer value = low.val;
         ListNode cursor = low.next;
         while(cursor!=high){
             if(value>cursor.val){
@@ -99,4 +104,5 @@ public class QuickSort {
         pre.next = dummyLow.next;
         return low;
     }
+	
 }
