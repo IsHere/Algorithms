@@ -13,10 +13,16 @@ public class DynamicProxyTimeCaculateHandler implements InvocationHandler {
 	}
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-		System.out.println(object.getClass().getSimpleName());
+		Integer[] arg = (Integer[])args[0];
+		for(Integer i:arg) {
+			System.out.print(i+" ");
+		}System.out.println();
 		Long begainTime = System.nanoTime();
 		Object result = method.invoke(object, args);
 		Long endTime = System.nanoTime();
+		for(Integer i:arg) {
+			System.out.print(i+" ");
+		}System.out.println();
 		System.out.println("运行时间 :"+(endTime-begainTime)+"ns");
 		return result;
 	}

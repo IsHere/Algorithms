@@ -1,6 +1,7 @@
 package algorithms.sort;
 
 import algorithms.utils.ListNode;
+import algorithms.utils.ProxyUtil;
 
 import static algorithms.utils.ArrayUtil.*;
 
@@ -11,15 +12,7 @@ import algorithms.proxy.DynamicProxyTimeCaculateHandler;
 public class QuickSort implements GeneralSort{
 	
 	public static void main(String[] args) {
-		GeneralSort quickSort = new QuickSort();
-		GeneralSort quickSortProxy = 
-				(GeneralSort)Proxy.newProxyInstance(GeneralSort.class.getClassLoader(), 
-				new Class[] {GeneralSort.class},
-				new DynamicProxyTimeCaculateHandler(quickSort));
-		Integer[] a = generateRandomArray(100);
-		printrArray(a);
-		quickSortProxy.sort(a);
-		printrArray(a);
+		ProxyUtil.excuteSort(new QuickSort(), generateRandomArray(20));
 	}
 	
 	//数组实现
@@ -35,18 +28,45 @@ public class QuickSort implements GeneralSort{
 		quickSort(a, partition+1, high);
 	}
 
+	//三向切分，和上面的比起来区别在于当前值的位置是一直动的
+	//这个方法一次计算之后，作为对比的那个值该是i->j的的中间。
+	//所以递归的参数是low->current和j->high
+	private static void sort(Comparable[] a,int low,int high) {
+		if (high<=low) {
+			return;
+		}
+		int current = low;int i=low+1;int j = high;
+		Comparable value = a[low];
+		while(i<=j) {
+			int flag = a[i].compareTo(value);
+			if (flag<0) {
+				exch(a, current++, i++);
+			}
+			else if (flag>0) {
+				exch(a, i, j--);
+			}
+			else {
+				i++;
+			}
+			sort(a, low, current-1);
+			sort(a, j+1, high);
+		}
+	}
+	//第二个循环的判断可删除，因为j==lowd的时候必定等于跳出循环。
+	//
 	private  Integer partition(Integer[] a,Integer low,Integer high) {
-		Integer i=low+1,j=high;
+		Integer i=low,j=high+1;
 		Integer value  = a[low];
 		while(true) {
-			while(a[i]<value) {
+			while(a[++i]<value) {
 				if (i==high) {
 					break;
 				}
-				i++;
 			}
-			while(a[j]>value) {
-				j--;
+			while(a[--j]>value) {
+				if (j==low) {
+					break;
+				}
 			}
 			if (i>=j) {
 				break;
@@ -70,7 +90,6 @@ public class QuickSort implements GeneralSort{
         return dummyPre.next;
 
     }
-
     private void quickSort(ListNode pre,ListNode head,ListNode end){
         if(head!=end&&head.next!=end){
             //head涓嶅啀鎸囧悜澶寸粨鐐癸紝鎵�浠ラ渶瑕佺敤pre
