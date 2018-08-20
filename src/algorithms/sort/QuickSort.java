@@ -8,29 +8,28 @@ import java.lang.reflect.Proxy;
 
 import algorithms.interfaces.GeneralSort;
 import algorithms.proxy.DynamicProxyTimeCaculateHandler;
+import algorithms.utils.ProxyUtil;
+
 public class QuickSort implements GeneralSort{
 	
 	public static void main(String[] args) {
-		GeneralSort quickSort = new QuickSort();
-		GeneralSort quickSortProxy = 
-				(GeneralSort)Proxy.newProxyInstance(GeneralSort.class.getClassLoader(), 
-				new Class[] {GeneralSort.class},
-				new DynamicProxyTimeCaculateHandler(quickSort));
-		Integer[] a = generateRandomArray(100);
-		printrArray(a);
-		quickSortProxy.sort(a);
-		printrArray(a);
+
+		ProxyUtil.excuteSort(new QuickSort(),generateRandomArray(10));
 	}
 	
 	//数组实现
+	//找到一个bug
+	//
 	public  void sort(Integer[] a) {
         quickSort(a, 0, a.length - 1);
     }
 	private  void quickSort(Integer[] a,Integer low,Integer high) {
+		System.out.println(low+" "+high);
 		if (high<=low) {
 			return;
 		}
 		Integer partition = partition(a, low, high);
+		printrArray(a);
 		quickSort(a, low, partition-1);
 		quickSort(a, partition+1, high);
 	}
@@ -40,7 +39,7 @@ public class QuickSort implements GeneralSort{
 		Integer value  = a[low];
 		while(true) {
 			while(a[i]<value) {
-				if (i==high) {
+				if (i.equals(high)) {
 					break;
 				}
 				i++;
@@ -73,7 +72,7 @@ public class QuickSort implements GeneralSort{
 
     private void quickSort(ListNode pre,ListNode head,ListNode end){
         if(head!=end&&head.next!=end){
-            //head涓嶅啀鎸囧悜澶寸粨鐐癸紝鎵�浠ラ渶瑕佺敤pre
+            //head no longer point to head node ，so use pre.next to get head node
             ListNode partition = partition(pre,head,end);
             quickSort(pre,pre.next,partition);
             quickSort(partition,partition.next,end);
