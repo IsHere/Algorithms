@@ -1,8 +1,14 @@
 package algorithms.sort;
 
 import algorithms.interfaces.GeneralSort;
+import algorithms.proxy.DynamicProxyTimeCaculateHandler;
+import algorithms.utils.ProxyUtil;
 
+import static algorithms.utils.ArrayUtil.*;
 public class BubbleSort implements GeneralSort{
+	 public static void main(String[] args) {
+		 ProxyUtil.excuteSort(new BubbleSort(), generateRandomArray());
+	}
 
 	@Override
 	public void sort(Integer[] a) {

@@ -8,11 +8,8 @@ import java.lang.reflect.Proxy;
 
 public class ProxyUtil {
 
-    public static void excuteSort(QuickSort sort, Integer[] a){
-        GeneralSort generalSortProxy =
-                (GeneralSort) Proxy.newProxyInstance(GeneralSort.class.getClassLoader(),
-                        new Class[]{GeneralSort.class},
-                        new DynamicProxyTimeCaculateHandler(sort));
+    public static void excuteSort(GeneralSort sort, Integer[] a){
+    	GeneralSort generalSortProxy = (GeneralSort)new DynamicProxyTimeCaculateHandler(sort).bind();
         generalSortProxy.sort(a);
 
     }

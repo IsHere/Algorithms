@@ -24,5 +24,17 @@ public class ArrayUtil {
 		}
 		System.out.println();
 	}
+	public static int[] generateRanArray() {
+		int[] a = new int[defaultNumber];
+		for(Integer i=0;i<a.length;i++) {
+			a[i] = (int) (Math.random() * randomRange);
+		}
+		return a;
+	}
+	public static void exch(Comparable[] a,int i,int j) {
+		Comparable temp  = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+	}
 	
 }
