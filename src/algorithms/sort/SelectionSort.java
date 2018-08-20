@@ -4,11 +4,12 @@ import static algorithms.utils.ArrayUtil.generateRandomArray;
 import static algorithms.utils.ArrayUtil.*;
 
 import algorithms.interfaces.GeneralSort;
+import algorithms.utils.ProxyUtil;
 
 public class SelectionSort implements GeneralSort {
 
 	public static void main(String[] args) {
-		
+		 ProxyUtil.excuteSort(new BubbleSort(), generateRandomArray());
 	}
 	//这玩意儿居然还有选择排序的这么一个名字....
 	@Override

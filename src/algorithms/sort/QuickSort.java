@@ -30,8 +30,8 @@ public class QuickSort implements GeneralSort{
 
 	//三向切分，和上面的比起来区别在于当前值的位置是一直动的
 	//这个方法一次计算之后，作为对比的那个值该是i->j的的中间。
-	//所以递归的参数是low->current和j->high
-	private static void sort(Comparable[] a,int low,int high) {
+	//所以递归的参数是(low->current)和(j->high]
+	public  void sort(Comparable[] a,int low,int high) {
 		if (high<=low) {
 			return;
 		}
@@ -92,7 +92,7 @@ public class QuickSort implements GeneralSort{
     }
     private void quickSort(ListNode pre,ListNode head,ListNode end){
         if(head!=end&&head.next!=end){
-            //head涓嶅啀鎸囧悜澶寸粨鐐癸紝鎵�浠ラ渶瑕佺敤pre
+            //head在执行partition之后不再指向头结点，所以使用pre
             ListNode partition = partition(pre,head,end);
             quickSort(pre,pre.next,partition);
             quickSort(partition,partition.next,end);

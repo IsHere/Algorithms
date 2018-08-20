@@ -7,19 +7,14 @@ import java.util.Set;
 
 import algorithms.interfaces.GeneralSort;
 import algorithms.proxy.DynamicProxyTimeCaculateHandler;
+import algorithms.utils.ProxyUtil;
+
 import static algorithms.utils.ArrayUtil.*;
 
 public class ShellSort implements GeneralSort {
 	
 	public static void main(String[] args) {
-		GeneralSort shellSort = new ShellSort();
-		GeneralSort shellSortproxy = (GeneralSort) 
-				Proxy.newProxyInstance(GeneralSort.class.getClassLoader(), new Class[] {GeneralSort.class}, new DynamicProxyTimeCaculateHandler(shellSort));
-		Integer[] a = generateRandomArray(20);
-		printrArray(a);
-		shellSortproxy.sort(a);
-		printrArray(a);
-		
+		 ProxyUtil.excuteSort(new BubbleSort(), generateRandomArray());
 		
 	}
 	@Override

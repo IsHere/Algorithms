@@ -4,12 +4,14 @@ import static algorithms.utils.ArrayUtil.generateRandomArray;
 import static algorithms.utils.ArrayUtil.*;
 
 import algorithms.interfaces.GeneralSort;
+import algorithms.proxy.DynamicProxyTimeCaculateHandler;
 import algorithms.utils.ListNode;
+import algorithms.utils.ProxyUtil;
 
 public class InsertSort implements GeneralSort {
 	
 	public static void main(String[] args) {
-		
+		 ProxyUtil.excuteSort(new BubbleSort(), generateRandomArray());
 	}
 	@Override
 	public  void sort(Integer[] a ) {
