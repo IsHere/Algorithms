@@ -16,8 +16,11 @@ public class ListNodeUtil {
 	}
 
 	public static void printListNode(ListNode head) {
+		if (isCycle(head)) {
+			System.out.println("ª∑–Œ¡¥±Ì");
+		}
 		if (null == head) {
-			System.out.print("end");
+			System.out.println("end");
 			return;
 		}
 		System.out.print(head + " ");
@@ -49,5 +52,21 @@ public class ListNodeUtil {
 	private static Integer getRandomNumber() {
 
 		return (int) (Math.random() * randomRange);
+	}
+	
+	public static boolean isCycle(ListNode node) {
+		if (node==null || node.next!=null) {
+			return false;
+		}
+		ListNode slow = node;
+		ListNode fast = node;
+		while(fast.next!=null && fast.next.next!=null) {
+			fast = fast.next.next;
+			slow = slow.next;
+			if (fast == slow) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

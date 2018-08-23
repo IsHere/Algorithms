@@ -2,17 +2,26 @@ package algorithms.sort;
 
 import algorithms.utils.ListNode;
 import algorithms.utils.ProxyUtil;
+import net.sf.cglib.proxy.Enhancer;
 
 import static algorithms.utils.ArrayUtil.*;
+import static algorithms.utils.ListNodeUtil.*;
 
 import java.lang.reflect.Proxy;
 
 import algorithms.interfaces.GeneralSort;
-import algorithms.proxy.DynamicProxyTimeCaculateHandler;
 public class QuickSort implements GeneralSort{
+	private static String className = QuickSort.class.getName();
 	
 	public static void main(String[] args) {
 		ProxyUtil.excuteSort(new QuickSort(), generateRandomArray(20));
+		try {
+		QuickSort quickSort = (QuickSort)ProxyUtil.createListSortProxy(className);
+		printListNode(quickSort.sortList(generateRandomListNode(10)));
+		} catch (Exception e) {
+			System.out.println("aa");
+		}
+		
 	}
 	
 	//数组实现

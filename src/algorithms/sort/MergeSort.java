@@ -1,7 +1,10 @@
 package algorithms.sort;
 
 import algorithms.interfaces.GeneralSort;
+import algorithms.proxy.TimeCaculateInterceptor;
 import algorithms.utils.ProxyUtil;
+import net.sf.cglib.proxy.Enhancer;
+
 import static algorithms.utils.ArrayUtil.*;
 
 import java.util.Arrays;
@@ -11,7 +14,9 @@ public class MergeSort implements GeneralSort {
 
 	public static void main(String []args){
         ProxyUtil.excuteSort(new MergeSort(), generateRandomArray());
-    }
+       
+       
+	}
     
 	@Override
 	public void sort(Integer[] a) {
