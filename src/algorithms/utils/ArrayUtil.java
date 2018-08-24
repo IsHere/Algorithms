@@ -18,6 +18,13 @@ public class ArrayUtil {
 		}
 		return a;
 	}
+	public static Integer[] generateRandomArrayForheap() {
+		Integer[] a = new Integer[defaultNumber+1];
+		for(Integer i=1;i<a.length;i++) {
+			a[i] = (int) (Math.random() * randomRange);
+		}
+		return a;
+	}
 	public static void printrArray(Integer[] a) {
 		for(Integer b:a) {
 			System.out.print(b+" ");
