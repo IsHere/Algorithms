@@ -61,8 +61,6 @@ public class QuickSort implements GeneralSort{
 			sort(a, j+1, high);
 		}
 	}
-	//第二个循环的判断可删除，因为j==lowd的时候必定等于跳出循环。
-	//
 	private  Integer partition(Integer[] a,Integer low,Integer high) {
 		Integer i=low,j=high+1;
 		Integer value  = a[low];
