@@ -1,6 +1,6 @@
 package algorithms.utils;
 
-import java.util.Vector;
+import algorithms.dateStructure.ListNode;
 
 public class ListNodeUtil {
 	private static Integer randomRange = 20;

@@ -2,7 +2,7 @@ package algorithms.proxy;
 
 import java.lang.reflect.Method;
 
-import algorithms.utils.ListNode;
+import algorithms.dateStructure.ListNode;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 import static algorithms.utils.ListNodeUtil.*;

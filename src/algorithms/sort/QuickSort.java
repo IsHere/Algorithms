@@ -1,13 +1,10 @@
 package algorithms.sort;
 
-import algorithms.utils.ListNode;
+import algorithms.dateStructure.ListNode;
 import algorithms.utils.ProxyUtil;
-import net.sf.cglib.proxy.Enhancer;
 
 import static algorithms.utils.ArrayUtil.*;
 import static algorithms.utils.ListNodeUtil.*;
-
-import java.lang.reflect.Proxy;
 
 import algorithms.interfaces.GeneralSort;
 public class QuickSort implements GeneralSort{
@@ -66,12 +63,12 @@ public class QuickSort implements GeneralSort{
 		Integer value  = a[low];
 		while(true) {
 			while(a[++i]<value) {
-				if (i==high) {
+				if (i.equals(high)) {
 					break;
 				}
 			}
 			while(a[--j]>value) {
-				if (j==low) {
+				if (j.equals(low)) {
 					break;
 				}
 			}

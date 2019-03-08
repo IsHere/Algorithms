@@ -1,4 +1,4 @@
-package algorithms.utils;
+package algorithms.dateStructure;
 
 public class MaxPQ {
     //可以是无序数组，然后调用delMax的时候用一次冒泡来删除数组结尾的数据

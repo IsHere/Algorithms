@@ -39,9 +39,7 @@ public class MergeSort implements GeneralSort {
 	private void merge(Integer[] a,Integer low,Integer mid,Integer hi) {
 		Integer i = low;
 		Integer j = mid+1;
-		for(int n = low;n<=hi;n++) {
-			aux[n] = a[n];
-		}
+		System.arraycopy(a, low, aux, low, hi + 1 - low);
 		int k=low;
 		while(k<=hi) {
 			//其中一个数组遍历结束，但是另一个数组并没有

@@ -1,9 +1,13 @@
 package algorithms.search;
 
+import algorithms.utils.ArrayUtil;
+import algorithms.utils.ProxyUtil;
+import org.junit.Test;
+
 public class BinarySearch {
 
 	//仅适用于排好序的
-	public int search(int[] array, int a) {
+	public int search(Integer[] array, int a) {
 		int low = 0;
 		int high = array.length-1;
 		while(low<high) {
@@ -19,6 +23,15 @@ public class BinarySearch {
 			}
 		}
 		return -1;
-		
+	}
+	@Test
+	public void test(){
+		Integer[] a = ArrayUtil.generateArray();
+		try {
+			BinarySearch binarySearch = (BinarySearch) ProxyUtil.createListSortProxy(this.getClass().getName());
+            System.out.println(binarySearch.search(a,4));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
