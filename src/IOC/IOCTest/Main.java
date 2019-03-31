@@ -1,10 +1,8 @@
-package IOCTest;
+package IOC.IOCTest;
 
-import IOCUtil.BeanFactory;
-import algorithms.annotation.Autowire;
-import algorithms.annotation.Bean;
-
-import java.util.*;
+import IOC.IOCUtil.BeanFactory;
+import IOC.IOCannotation.Autowire;
+import IOC.IOCannotation.Bean;
 
 @Bean
 public class Main {

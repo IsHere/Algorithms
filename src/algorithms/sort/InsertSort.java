@@ -9,9 +9,7 @@ import algorithms.utils.ProxyUtil;
 public class InsertSort implements GeneralSort {
 	
 	public static void main(String[] args) {
-	    InsertSort insertSort = new InsertSort();
-        System.out.println(insertSort.getClass().getName());
-		// ProxyUtil.excuteSort(new BubbleSort(), generateRandomArray());
+		 ProxyUtil.excuteSort(new BubbleSort(), generateRandomArray());
 	}
 	@Override
 	public  void sort(Integer[] a ) {

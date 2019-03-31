@@ -1,6 +1,6 @@
-package IOCTest;
+package IOC.IOCTest;
 
-import algorithms.annotation.Bean;
+import IOC.IOCannotation.Bean;
 
 @Bean
 public class User {
