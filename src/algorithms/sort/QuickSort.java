@@ -7,6 +7,10 @@ import static algorithms.utils.ArrayUtil.*;
 import static algorithms.utils.ListNodeUtil.*;
 
 import algorithms.interfaces.GeneralSort;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class QuickSort implements GeneralSort{
 	private static String className = QuickSort.class.getName();
 	
@@ -18,6 +22,8 @@ public class QuickSort implements GeneralSort{
 		} catch (Exception e) {
 			System.out.println("aa");
 		}
+
+		List list = new ArrayList();
 		
 	}
 	
